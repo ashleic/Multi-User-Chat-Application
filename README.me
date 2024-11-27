@@ -1,0 +1,95 @@
+Multi-User Chat Application - FestiveFootprints
+
+Overview
+
+This project is a multi-user chat application designed for up to 10 clients to connect to a server and communicate in real-time using public messages. It is tailored for travel enthusiasts who want to connect with others and exchange information about destinations and experiences.
+Client-server architecture: A central server handles multiple clients.
+Public messaging: Messages sent by a client are broadcast to all connected users.
+User authentication: Clients provide a username when joining.
+Active user list: The server maintains a list of all connected clients.
+Thread-safe communication: Uses a mutex to handle shared resources like the client list.
+Concurrent connections: Supports up to 10 clients at the same time.
+
+Requirements
+
+Functional Guidelines
+Public Messaging: All messages are broadcast to all connected clients.
+Concurrency: The server can handle multiple clients at the same time.
+Error Handling: Handles disconnections gracefully.
+System Calls Used:
+socket(), bind(), listen(), accept(), send(), recv(), and pthread for multithreading.
+Technical Requirements
+Language: C
+OS Compatibility: Linux/Unix
+Networking Protocol: TCP/IP
+
+Files
+
+server_public.c: The server code that listens for connections and handles client communication.
+client_public.c: The client code that connects to the server and sends/receives messages.
+How to Compile and Run
+
+1. Compile the Server
+gcc server_public.c -o server -lpthread
+2. Compile the Client
+gcc client_public.c -o client -lpthread
+3. Run the Server
+Start the server in one terminal:
+./server
+4. Run the Client(s)
+Start multiple clients in separate terminals:
+./client
+How to Use
+
+On the Client Side:
+Enter your username when prompted.
+Example:
+Enter your username: Ashlei
+Type messages to send them to everyone in the chat. Example:
+Hello everyone!
+To exit, press Ctrl+C or close the terminal.
+
+Code Explanation
+
+Server Code:
+socket(): Creates a socket for communication.
+bind(): Assigns the socket to a specific port (8080 by default).
+listen(): Makes the server ready to accept client connections.
+accept(): Waits for incoming client connections.
+pthread_create(): Creates a new thread for each client to handle communication.
+send() and recv(): Send and receive messages over the network.
+Client Code:
+socket(): Creates a socket for communication.
+connect(): Connects to the server.
+pthread_create(): Creates a thread to listen for incoming messages.
+send() and recv(): Send messages to the server and receive messages from it.
+Example Interaction
+
+Server Output:
+Server started on port 8080
+Ashlei joined the chat.
+Sue joined the chat.
+Ashlei: Hello!
+Sue: Hi Ashlei!
+Ashlei left the chat.
+Client Output (Ashlei):
+Enter your username: Ashlei
+Sue: Hi Ashlei!
+Client Output (Sue):
+Enter your username: Sue
+Ashlei: Hello!
+Key Notes
+
+The server supports up to 10 clients.
+The server must be started first, and clients should connect afterward.
+Ensure all clients connect to the same IP address and port.
+Future Improvements
+
+Add support for private messaging.
+Implement /users command to list active clients.
+Add persistent message history.
+Improve error handling for abrupt client disconnections.
+
+License
+
+This project is for educational purposes and is free to use and modify.
