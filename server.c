@@ -3,7 +3,7 @@
 #include <string.h> // 
 #include <unistd.h> // 
 #include <arpa/inet.h> // For socket programming (inet_addr, sockaddr_in)
-#include <pthread.h> // For creating threads
+#include <pthread.h> // For creating thread
 
 #define PORT 8080 // Port number for the server
 #define MAX_CLIENTS 10 // Maximum number of clients
