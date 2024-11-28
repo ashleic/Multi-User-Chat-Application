@@ -3,7 +3,7 @@
 #include <string.h> 
 #include <unistd.h> 
 #include <arpa/inet.h> // For socket programming
-#include <pthread.h> // For creating threads
+#include <pthread.h> // For creating thread
 
 #define PORT 8080 // Port number to connect to
 #define BUFFER_SIZE 1024 // Buffer size for messages
